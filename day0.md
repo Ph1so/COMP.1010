@@ -2,11 +2,11 @@
 
 ## Class info
 
-Office: Dandeneaui Hall 326
+Office: Dandeneau Hall 326
 
 Office Hours: MWF 10-10:50 or by appointment
 
-Textbook: Jeri R Hanly and Ellliot B Koffman Problem SOflving and Prolem Desing in C 8th Edition
+Textbook: Jeri R Hanly and Elliot B Koffman Problem Solving and Problem Design in C 8th Edition
 
 Sign into Blackboard for webpage
 
