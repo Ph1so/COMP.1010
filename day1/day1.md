@@ -14,6 +14,8 @@ int main(int argc, char *argv[]) //int = "return type" // "main" is the function
 
 "main" is the entry point - program will look for "main" - if there is no "main" program wont "link"
 
+formal parameters:
+
 This is a "header"
 
 ```c
