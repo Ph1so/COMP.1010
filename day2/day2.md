@@ -19,7 +19,6 @@ int main(int argc, char* argv[]){
 }
 ```
 
-<br/>
 ## An expression is a combination of one or more terms connected by operators, which is evaluated to produce a single result. This result is of a specific type.
 
 Q: when you printf a string is the string stored in memory?
