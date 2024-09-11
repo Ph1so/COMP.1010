@@ -12,3 +12,5 @@ white = 0
 color = 1
 7 bits per char
 ASCII table
+
+<img width="515" alt="Screenshot 2024-09-11 at 9 36 37 AM" src="https://github.com/user-attachments/assets/4e8d6853-9718-4bfa-bbf2-54aa3006d803">
