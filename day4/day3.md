@@ -33,3 +33,5 @@ int main(int argc, char *argv[]){
 ```
 
 Binary information has no meaning without context (slow)
+
+Lexicon -> ASCII table character mappings
