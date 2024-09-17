@@ -16,6 +16,7 @@ X  \_/ X
  X    X
   XXXX
 
+
   XXXX
  X . .X
 X      X
@@ -28,21 +29,21 @@ X  \_/ X
 
 void smile(void)
 {
-    printf("  XXXX   \n");
-    printf(" X . .X \n");
-    printf("X      X\n");
-    printf("X  \\_/ X\n");
-    printf(" X    X \n");
-    printf("  XXXX   \n");
-    return;
+  printf("  XXXX   \n");
+  printf(" X . .X \n");
+  printf("X      X\n");
+  printf("X  \\_/ X\n");
+  printf(" X    X \n");
+  printf("  XXXX   \n");
+  return;
 }
 
 int main(int argc, char *argv[])
 {
-    smile();
-    printf("\n");
-    smile();
-    printf("\n");
-    smile();
-    return 0;
+  smile();
+  printf("\n");
+  smile();
+  printf("\n\n");
+  smile();
+  return 0;
 }

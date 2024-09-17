@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/phinguyen/COMP1010/dailys/output/daily6'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003E84, symSize: 0x54 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003E84, symSize: 0x54 }
+  - { offsetInCU: 0x77, offset: 0x77, size: 0x8, addend: 0x0, symName: _recursive_down_to_zero, symObjAddr: 0x54, symBinAddr: 0x100003ED8, symSize: 0x5C }
+  - { offsetInCU: 0x9B, offset: 0x9B, size: 0x8, addend: 0x0, symName: _recursive_up_to_int, symObjAddr: 0xB0, symBinAddr: 0x100003F34, symSize: 0x5C }
+...

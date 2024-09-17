@@ -13,8 +13,8 @@ Floating point numbers use %f. 3.141590 is an example.
 
 int main(int argc, char *argv[])
 {
-    printf("%d is an integer and should be printed using %%d.\n", 42);
-    printf("The character '%c' can be printed using %%c.\n", 'J');
-    printf("Floating point numbers use %%f. %f is an example.\n", 3.14159);
+    printf("%d is an integer and should be printed using %cd.\n", 42, 37);
+    printf("The character '%c' can be printed using %cc.\n", 'J', 37);
+    printf("Floating point numbers use %cf. %f is an example.\n", 37, 3.14159);
     return 0;
 }
