@@ -3,14 +3,14 @@
 This example passes a copy of `x` to the function scanf
 
 ```c
-int x =4
+int x = 4;
 scanf("%d", x);
 ```
 
 This example passes the address of `x` to the function scanf
 
 ```c
-int x =4
+int x = 4;
 scanf("%d", &x);
 ```
 
