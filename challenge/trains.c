@@ -35,6 +35,7 @@ int swap_train(int trains[], int length, int count)
     int right = 1;
     while (swapped == 0)
     {
+        // assign trains
         int t_left = trains[right - 1];
         int t_right = trains[right];
         if (t_left > t_right) // swap if left > right
