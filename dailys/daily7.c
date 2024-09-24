@@ -14,7 +14,7 @@ void add_digit(int decimal);
 
 int main(int argc, char *argv[])
 {
-    add_digit(42);
+    add_digit(0);
     return 0;
 }
 
@@ -22,6 +22,7 @@ void add_digit(int decimal)
 {
     if (decimal == 0)
     {
+        printf("0");
         return;
     }
     add_digit(decimal / 2);
