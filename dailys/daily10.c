@@ -22,12 +22,13 @@ int main(int argc, char *argv[])
     int noc;
     printf("Please enter a negative integer: ");
     noc = scanf("%d", &answer);
+    clear_buffer();
 
     while (noc != 1 || answer >= 0)
     {
         printf("I'm sorry, you must enter a negative integer less than zero: ");
-        clear_buffer();
         noc = scanf("%d", &answer);
+        clear_buffer();
     }
     printf("The negative integer was: %d\n", answer);
     return 0;
