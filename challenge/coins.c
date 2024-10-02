@@ -4,75 +4,24 @@ int break_coins(int total, int options);
 
 int main(int argc, char *argv[])
 {
-    int options = break_coins(6, 0);
+    int options = break_coins(25, 0);
     printf("%d", options);
     return 0;
 }
 
 int break_coins(int total, int options)
 {
-    if (total == 0)
-        return 1;
-    if (total < 5)
-        return 0;
-    while (total >= 5)
+    total = total / 5;
+    options += total + 1;
+    if (total > 1)
     {
-        if (total >= 50)
-        {
-            total -= 50;
-            if (total == 0)
-            {
-                options += break_coins(25, 0);
-                options += break_coins(25, 0);
-            }
-            else
-            {
-                options += break_coins(total, 0);
-                options += break_coins(50, 0);
-            }
-        }
-        else if (total >= 25)
-        {
-            total -= 25;
-            if (total == 0)
-            {
-                options += break_coins(10, 0);
-                options += break_coins(10, 0);
-                options += break_coins(5, 0);
-            }
-            else
-            {
-                options += break_coins(total, 0);
-                options += break_coins(25, 0);
-            }
-        }
-        else if (total >= 10)
-        {
-            total -= 10;
-            if (total == 0)
-            {
-                options += break_coins(5, 0);
-                options += break_coins(5, 0);
-            }
-            else
-            {
-                options += break_coins(total, 0);
-                options += break_coins(10, 0);
-            }
-        }
-        else if (total >= 5)
-        {
-            total -= 5;
-            if (total == 0)
-            {
-                options += break_coins(1, 0);
-            }
-            else
-            {
-                options += break_coins(total, 0);
-                options += break_coins(5, 0);
-            }
-        }
+        total = total / 2;
+        options += total + 1 + break_coins(5 * (total % 2), 0);
+    }
+    if (total > 2)
+    {
+        total = total / 2.5;
+        options += total + 1 + break_coins(5 * 2.5 * (total % 2.5), 0);
     }
     return options;
 }
