@@ -15,6 +15,7 @@ Time spent:
 #include <stdio.h>
 
 void clear_buffer(void);
+void draw_line(int num);
 
 int main(int argc, char *argv[])
 {
@@ -28,12 +29,7 @@ int main(int argc, char *argv[])
         clear_buffer();
         scanf("%d", &num);
     }
-
-    while (num != 0)
-    {
-        printf("*");
-        num--;
-    }
+    draw_line(num);
     printf("\n");
     return 0;
 }
@@ -45,6 +41,16 @@ void clear_buffer(void)
     while (ans != '\n')
     {
         scanf("%c", &ans);
+    }
+    return;
+}
+
+void draw_line(int num)
+{
+    while (num != 0)
+    {
+        printf("*");
+        num--;
     }
     return;
 }
