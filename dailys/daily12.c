@@ -25,11 +25,10 @@ int main(int argc, char *argv[])
     do
     {
         play_game();
-        printf("Do you wish to continue? (y/n) : ");
+        printf("Do you wish to continue? (y/n): ");
         noc = scanf("%c", &c);
         clear_buffer();
-    } while (noc != 1 || c != 'y' && c != 'n');
-    return 0;
+    } while (c == 'y' || c == 'Y');
 }
 
 void play_game(void)
@@ -41,30 +40,32 @@ void play_game(void)
     printf("Player 2 it is your turn!\n");
     p2 = get_choice();
 
-    if ((p1 == 'r' && p2 == 's') || (p2 == 'r' && p1 == 's'))
+    if (((p1 == 'r' || p1 == 'R') && (p2 == 's' || p2 == 'S')) || ((p1 == 's' || p1 == 'S') && (p2 == 'r' || p2 == 'R')))
     {
         printf("Rock breaks Scissors.");
-        if (p1 == 'r')
+        if (p1 == 'r' || p1 == 'R')
             printf(" Player 1 wins!\n");
         else
             printf(" Player 2 wins!\n");
     }
-    else if ((p1 == 's' && p2 == 'p') || (p2 == 's' && p1 == 'p'))
+    else if (((p1 == 's' || p1 == 'S') && (p2 == 'p' || p2 == 'P')) || ((p1 == 'p' || p1 == 'P') && (p2 == 's' || p2 == 'S')))
     {
         printf("Scissors cuts Paper.");
-        if (p1 == 's')
+        if (p1 == 's' || p1 == 'S')
             printf(" Player 1 wins!\n");
         else
             printf(" Player 2 wins!\n");
     }
-    else if ((p1 == 'p' && p2 == 'r') || (p2 == 'p' && p1 == 'r'))
+    else if (((p1 == 'p' || p1 == 'P') && (p2 == 'r' || p2 == 'R')) || ((p1 == 'r' || p1 == 'R') && (p2 == 'p' || p2 == 'P')))
     {
         printf("Paper eats Rock.");
-        if (p1 == 'p')
+        if (p1 == 'p' || p1 == 'P')
             printf(" Player 1 wins!\n");
         else
             printf(" Player 2 wins!\n");
     }
+    else
+        printf("Tie!\n");
     return;
 }
 
@@ -75,7 +76,7 @@ char get_choice(void)
     printf("Player choose (r)ock, (p)aper, (s)cissors: ");
     noc = scanf("%c", &choice);
     clear_buffer();
-    while (noc != 1 || choice != 'r' && choice != 'p' && choice != 's')
+    while (noc != 1 || choice != 'r' && choice != 'p' && choice != 's' && choice != 'R' && choice != 'P' && choice != 'S')
     {
         printf("I'm sorry but you must enter 'r', 'p', or 's'\n");
         printf("Player choose (r)ock, (p)aper, (s)cissors: ");
