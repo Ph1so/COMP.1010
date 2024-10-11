@@ -17,18 +17,14 @@ Time spent:
 void play_game(void);
 char get_choice(void);
 void clear_buffer(void);
+int continue_game(void);
 
 int main(int argc, char *argv[])
 {
-    char c;
-    int noc;
     do
     {
         play_game();
-        printf("Do you wish to continue? (y/n): ");
-        noc = scanf("%c", &c);
-        clear_buffer();
-    } while (c == 'y' || c == 'Y');
+    } while (continue_game());
 }
 
 void play_game(void)
@@ -84,6 +80,21 @@ char get_choice(void)
         clear_buffer();
     }
     return choice;
+}
+
+int continue_game(void)
+{
+    int noc;
+    char c;
+    do
+    {
+        printf("Do you wish to continue? (y/n): ");
+        noc = scanf("%c", &c);
+        clear_buffer();
+    } while (c != 'y' && c != 'Y' && c != 'n' && c != 'N');
+    if (c == 'y' || c == 'Y')
+        return 1;
+    return 0;
 }
 
 void clear_buffer(void)

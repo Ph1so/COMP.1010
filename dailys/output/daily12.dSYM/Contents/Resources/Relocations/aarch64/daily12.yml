@@ -2,9 +2,10 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/phinguyen/COMP1010/dailys/output/daily12'
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000038E8, symSize: 0x9C }
-  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x1000038E8, symSize: 0x9C }
-  - { offsetInCU: 0x93, offset: 0x93, size: 0x8, addend: 0x0, symName: _play_game, symObjAddr: 0x9C, symBinAddr: 0x100003984, symSize: 0x340 }
-  - { offsetInCU: 0xC5, offset: 0xC5, size: 0x8, addend: 0x0, symName: _clear_buffer, symObjAddr: 0x3DC, symBinAddr: 0x100003CC4, symSize: 0x54 }
-  - { offsetInCU: 0xE9, offset: 0xE9, size: 0x8, addend: 0x0, symName: _get_choice, symObjAddr: 0x430, symBinAddr: 0x100003D18, symSize: 0x15C }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000383C, symSize: 0x48 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x10000383C, symSize: 0x48 }
+  - { offsetInCU: 0x93, offset: 0x93, size: 0x8, addend: 0x0, symName: _play_game, symObjAddr: 0x48, symBinAddr: 0x100003884, symSize: 0x340 }
+  - { offsetInCU: 0xC5, offset: 0xC5, size: 0x8, addend: 0x0, symName: _continue_game, symObjAddr: 0x388, symBinAddr: 0x100003BC4, symSize: 0x100 }
+  - { offsetInCU: 0xFB, offset: 0xFB, size: 0x8, addend: 0x0, symName: _get_choice, symObjAddr: 0x488, symBinAddr: 0x100003CC4, symSize: 0x15C }
+  - { offsetInCU: 0x131, offset: 0x131, size: 0x8, addend: 0x0, symName: _clear_buffer, symObjAddr: 0x5E4, symBinAddr: 0x100003E20, symSize: 0x54 }
 ...
