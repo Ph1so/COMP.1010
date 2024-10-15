@@ -1,30 +1,44 @@
 #include <stdio.h>
 
-int break_coins(int total, int options);
+int break_coins(int total, int largest_coin);
 
 int main(int argc, char *argv[])
 {
-    int options = break_coins(25, 0);
+    int options = break_coins(132, 50);
     printf("%d", options);
     return 0;
 }
 
-int break_coins(int total, int options)
-{
-    total = total / 5;
-    options += total + 1;
-    if (total > 1)
-    {
-        total = total / 2;
-        options += total + 1 + break_coins(5 * (total % 2), 0);
+int break_coins(int total, int largest_coin) {
+    // Base case: if the total is 0, there is only one way to break it
+    if (total == 0) {
+        return 1;
     }
-    if (total > 2)
-    {
-        total = total / 2.5;
-        options += total + 1 + break_coins(5 * 2.5 * (total % 2.5), 0);
+
+    // If total is negative, no valid solution
+    if (total < 0) {
+        return 0;
     }
+
+    int options = 0;
+    
+    // Recursively check all coins smaller than or equal to largest_coin
+    if (largest_coin >= 25) {
+        options += break_coins(total - 25, 25);  // Use a quarter
+    }
+    if (largest_coin >= 10) {
+        options += break_coins(total - 10, 10);  // Use a dime
+    }
+    if (largest_coin >= 5) {
+        options += break_coins(total - 5, 5);    // Use a nickel
+    }
+    if (largest_coin >= 1) {
+        options += break_coins(total - 1, 1);    // Use a penny
+    }
+
     return options;
 }
+
 
 // Take 2: calls break_coins after taking largest possible coin - doesnt break the rest
 // int break_coins(int total, int options)
