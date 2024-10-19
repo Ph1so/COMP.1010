@@ -9,14 +9,14 @@ stack overflow - using more memory than allocated
 ```c
 #include <stdio.h>
 
-int joe(void);
+int joe(void); // function prototype/declaration
 
 int main(){
-    joe();
+    joe(); // function call
     return 0;
 }
 
-int joe(){
-    printf("Hello %d", x);
+int joe(void){ //function definition
+    printf("Hello %d", x); 
 }
 ```
