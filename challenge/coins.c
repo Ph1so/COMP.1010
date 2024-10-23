@@ -1,16 +1,21 @@
 #include <stdio.h>
 
 int break_coins(int total, int largest_coin);
-
+int found[10000][5];
 int main(int argc, char *argv[])
 {
-    int options = break_coins(132, 50);
+    for(int i = 0; i < 10000; i++){
+        for(int j = 0; j < 5; j++){
+            found[i][j] = -1;
+        }
+    }
+    int options = break_coins(7000, 50);
     printf("%d", options);
     return 0;
 }
 
 int break_coins(int total, int largest_coin) {
-    // Base case: if the total is 0, there is only one way to break it
+    // if the total is 0, there is only one way to break it
     if (total == 0) {
         return 1;
     }
@@ -21,10 +26,27 @@ int break_coins(int total, int largest_coin) {
     }
 
     int options = 0;
-    
+    int seen;
     // Recursively check all coins smaller than or equal to largest_coin
+    if (largest_coin >= 50) {
+        if(found[total-50][4] != -1){
+            options += found[total-50][4];
+        }
+        else{
+            seen = break_coins(total-50, 50);
+            options += seen;
+            found[total-50][4] = seen;
+        }
+    }
     if (largest_coin >= 25) {
-        options += break_coins(total - 25, 25);  // Use a quarter
+        if(found[total-25][3] != -1){
+            options += found[total-25][3];
+        }
+        else{
+            seen = break_coins(total-25, 25);
+            options += seen;
+            found[total-25][3] = seen;
+        }
     }
     if (largest_coin >= 10) {
         options += break_coins(total - 10, 10);  // Use a dime
@@ -33,7 +55,7 @@ int break_coins(int total, int largest_coin) {
         options += break_coins(total - 5, 5);    // Use a nickel
     }
     if (largest_coin >= 1) {
-        options += break_coins(total - 1, 1);    // Use a penny
+        options += 1;    // Use a penny
     }
 
     return options;

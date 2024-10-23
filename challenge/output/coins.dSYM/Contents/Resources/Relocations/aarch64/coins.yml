@@ -2,7 +2,8 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/phinguyen/COMP1010/challenge/output/coins'
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003DFC, symSize: 0x5C }
-  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003DFC, symSize: 0x5C }
-  - { offsetInCU: 0x85, offset: 0x85, size: 0x8, addend: 0x0, symName: _break_coins, symObjAddr: 0x5C, symBinAddr: 0x100003E58, symSize: 0x140 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003C5C, symSize: 0xDC }
+  - { offsetInCU: 0x4D, offset: 0x4D, size: 0x8, addend: 0x0, symName: _found, symBinAddr: 0x100008000, symSize: 0x0 }
+  - { offsetInCU: 0x70, offset: 0x70, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003C5C, symSize: 0xDC }
+  - { offsetInCU: 0xEC, offset: 0xEC, size: 0x8, addend: 0x0, symName: _break_coins, symObjAddr: 0xDC, symBinAddr: 0x100003D38, symSize: 0x260 }
 ...
