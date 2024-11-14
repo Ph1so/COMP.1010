@@ -10,27 +10,27 @@
 
 #include <stdio.h>
 
-void convert_lengths();
-void convert_weights();
+void convert_lengths(void);
+void convert_weights(void);
 void get_input(int *p_ans);
 void clear_buffer(void);
 
-void length_to_metric();
+void length_to_metric(void);
 void length_input_us(int *feet, double *inches);
 void length_convert_to_metric(int feet, double inches, int *meters, double *centimeters);
 void length_output_metric(int meters, double centimeters);
 
-void length_to_us();
+void length_to_us(void);
 void length_input_metric(double *meters, double *centimeters);
 void length_convert_to_us(double meters, double centimeters, int *feet, double *inches);
 void length_output_us(int feet, double inches);
 
-void weight_to_metric();
+void weight_to_metric(void);
 void weight_input_us(int *pounds, double *ounces);
 void weight_convert_to_metric(int pounds, double ounces, int *kilograms, double *grams);
 void weight_output_metric(int kilograms, double grams);
 
-void weight_to_us();
+void weight_to_us(void);
 void weight_input_metric(double *kilograms, double *grams);
 void weight_convert_to_us(double kilograms, double grams, int *pounds, double *ounces);
 void weight_output_us(int pounds, double ounces);
@@ -55,7 +55,7 @@ int main(int argc, char *argv[])
     return 0;
 }
 
-void convert_lengths()
+void convert_lengths(void)
 {
     int choice;
     do
@@ -71,7 +71,7 @@ void convert_lengths()
         length_to_us();
 }
 
-void convert_weights()
+void convert_weights(void)
 {
     int choice;
     do
@@ -109,7 +109,7 @@ void clear_buffer(void)
 }
 
 // Length Conversion Functions
-void length_to_metric()
+void length_to_metric(void)
 {
     int feet, meters;
     double inches, centimeters;
@@ -140,7 +140,7 @@ void length_output_metric(int meters, double centimeters)
     printf("Converted length: %d meters and %.2f centimeters\n", meters, centimeters);
 }
 
-void length_to_us()
+void length_to_us(void)
 {
     double meters, centimeters;
     int feet;
@@ -172,7 +172,7 @@ void length_output_us(int feet, double inches)
 }
 
 // Weight Conversion Functions
-void weight_to_metric()
+void weight_to_metric(void)
 {
     int pounds, kilograms;
     double ounces, grams;
@@ -203,7 +203,7 @@ void weight_output_metric(int kilograms, double grams)
     printf("Converted weight: %d kilograms and %.2f grams\n", kilograms, grams);
 }
 
-void weight_to_us()
+void weight_to_us(void)
 {
     double kilograms, grams;
     int pounds;
