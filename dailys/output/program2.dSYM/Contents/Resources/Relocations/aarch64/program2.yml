@@ -1,0 +1,12 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/phinguyen/UML/COMP1010/dailys/output/program2'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003B44, symSize: 0x60 }
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003B44, symSize: 0x60 }
+  - { offsetInCU: 0x85, offset: 0x85, size: 0x8, addend: 0x0, symName: _get_size, symObjAddr: 0x60, symBinAddr: 0x100003BA4, symSize: 0x90 }
+  - { offsetInCU: 0xB7, offset: 0xB7, size: 0x8, addend: 0x0, symName: _get_days, symObjAddr: 0xF0, symBinAddr: 0x100003C34, symSize: 0x90 }
+  - { offsetInCU: 0xE9, offset: 0xE9, size: 0x8, addend: 0x0, symName: _calculate_population, symObjAddr: 0x180, symBinAddr: 0x100003CC4, symSize: 0xB0 }
+  - { offsetInCU: 0x161, offset: 0x161, size: 0x8, addend: 0x0, symName: _get_choice, symObjAddr: 0x230, symBinAddr: 0x100003D74, symSize: 0xA8 }
+  - { offsetInCU: 0x193, offset: 0x193, size: 0x8, addend: 0x0, symName: _clear_buffer, symObjAddr: 0x2D8, symBinAddr: 0x100003E1C, symSize: 0x4C }
+...
