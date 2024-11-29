@@ -1,39 +1,96 @@
-/***********************************************
- Program: Daily16 Conversion Program
- Author: Phi Nguyen
- Date: 11/3/2024
- Time Spent: 30 minutes
- Sources of Help: None
- Purpose: Practice top-down approach with stub functions, 
- separating input, conversion, and output functions, and using pointers.
-***********************************************/
-
 #include <stdio.h>
 
+// Function declarations
 void convert_lengths(void);
+// Pre: None. The program has already decided to handle length conversions.
+// Post: Prompts the user for the direction of length conversion (ft/in to m/cm or m/cm to ft/in). 
+//       Executes the appropriate conversion based on user input.
+
 void convert_weights(void);
+// Pre: None. The program has already decided to handle weight conversions.
+// Post: Prompts the user for the direction of weight conversion (lb/oz to kg/g or kg/g to lb/oz). 
+//       Executes the appropriate conversion based on user input.
+
 void get_input(int *p_ans);
+// Pre: Pointer to an integer is provided to store the user's choice.
+// Post: Prompts the user for the main menu selection (0 - Exit, 1 - Convert Length, 2 - Convert Weight). 
+//       Stores the valid user input in the variable pointed to by p_ans.
+
 void clear_buffer(void);
+// Pre: None. Assumes there may be excess characters in the input buffer.
+// Post: Clears any residual characters from the input buffer, leaving it ready for the next input.
 
 void length_to_metric(void);
+// Pre: None. User has already selected to convert from feet/inches to meters/centimeters.
+// Post: Prompts the user for feet and inches input, converts to meters and centimeters, 
+//       and outputs the converted values.
+
 void length_input_us(int *feet, double *inches);
+// Pre: Pointers to an integer and a double are provided to store the input values.
+// Post: Prompts the user for feet and inches values and stores them in the variables pointed to by feet and inches.
+
 void length_convert_to_metric(int feet, double inches, int *meters, double *centimeters);
+// Pre: Input values in feet and inches are provided. Pointers to an integer and a double are provided for the output.
+// Post: Converts the given feet and inches to meters and centimeters, storing the results in the provided pointers.
+
 void length_output_metric(int meters, double centimeters);
+// Pre: Meters and centimeters values are provided.
+// Post: Prints the converted length in meters and centimeters to the console.
 
 void length_to_us(void);
+// Pre: None. User has already selected to convert from meters/centimeters to feet/inches.
+// Post: Prompts the user for meters and centimeters input, converts to feet and inches, 
+//       and outputs the converted values.
+
 void length_input_metric(double *meters, double *centimeters);
+// Pre: Pointers to two doubles are provided to store the input values.
+// Post: Prompts the user for meters and centimeters values and stores them in the variables pointed to by meters and centimeters.
+
 void length_convert_to_us(double meters, double centimeters, int *feet, double *inches);
+// Pre: Input values in meters and centimeters are provided. Pointers to an integer and a double are provided for the output.
+// Post: Converts the given meters and centimeters to feet and inches, storing the results in the provided pointers.
+
 void length_output_us(int feet, double inches);
+// Pre: Feet and inches values are provided.
+// Post: Prints the converted length in feet and inches to the console.
 
 void weight_to_metric(void);
+// Pre: None. User has already selected to convert from pounds/ounces to kilograms/grams.
+// Post: Prompts the user for pounds and ounces input, converts to kilograms and grams, 
+//       and outputs the converted values.
+
 void weight_input_us(int *pounds, double *ounces);
+// Pre: Pointers to an integer and a double are provided to store the input values.
+// Post: Prompts the user for pounds and ounces values and stores them in the variables pointed to by pounds and ounces.
+
 void weight_convert_to_metric(int pounds, double ounces, int *kilograms, double *grams);
+// Pre: Input values in pounds and ounces are provided. Pointers to an integer and a double are provided for the output.
+// Post: Converts the given pounds and ounces to kilograms and grams, storing the results in the provided pointers.
+
 void weight_output_metric(int kilograms, double grams);
+// Pre: Kilograms and grams values are provided.
+// Post: Prints the converted weight in kilograms and grams to the console.
 
 void weight_to_us(void);
+// Pre: None. User has already selected to convert from kilograms/grams to pounds/ounces.
+// Post: Prompts the user for kilograms and grams input, converts to pounds and ounces, 
+//       and outputs the converted values.
+
 void weight_input_metric(double *kilograms, double *grams);
+// Pre: Pointers to two doubles are provided to store the input values.
+// Post: Prompts the user for kilograms and grams values and stores them in the variables pointed to by kilograms and grams.
+
 void weight_convert_to_us(double kilograms, double grams, int *pounds, double *ounces);
+// Pre: Input values in kilograms and grams are provided. Pointers to an integer and a double are provided for the output.
+// Post: Converts the given kilograms and grams to pounds and ounces, storing the results in the provided pointers.
+
 void weight_output_us(int pounds, double ounces);
+// Pre: Pounds and ounces values are provided.
+// Post: Prints the converted weight in pounds and ounces to the console.
+
+// Constants
+const double POUNDS_IN_KILOGRAMS = 2.2046;
+const double METERS_IN_FOOT = 0.3048;
 
 int main(int argc, char *argv[])
 {
@@ -60,15 +117,18 @@ void convert_lengths(void)
     int choice;
     do
     {
-        printf("Convert from feet/inches to meters/centimeters (input 1) or from meters/centimeters to feet/inches (input 2) or exit (input 0): ");
-        scanf("%d", &choice);
-        clear_buffer();
-    } while (choice < 0 || choice > 2);
+        do
+        {
+            printf("Convert from feet/inches to meters/centimeters (1), meters/centimeters to feet/inches (2), or exit (0): ");
+            scanf("%d", &choice);
+            clear_buffer();
+        } while (choice < 0 || choice > 2);
 
-    if (choice == 1)
-        length_to_metric();
-    else if (choice == 2)
-        length_to_us();
+        if (choice == 1)
+            length_to_metric();
+        else if (choice == 2)
+            length_to_us();
+    } while (choice != 0);
 }
 
 void convert_weights(void)
@@ -76,15 +136,18 @@ void convert_weights(void)
     int choice;
     do
     {
-        printf("Convert from pounds/ounces to kilograms/grams (input 1) or from kilograms/grams to pounds/ounces (input 2) or exit (input 0): ");
-        scanf("%d", &choice);
-        clear_buffer();
-    } while (choice < 0 || choice > 2);
+        do
+        {
+            printf("Convert from pounds/ounces to kilograms/grams (1), kilograms/grams to pounds/ounces (2), or exit (0): ");
+            scanf("%d", &choice);
+            clear_buffer();
+        } while (choice < 0 || choice > 2);
 
-    if (choice == 1)
-        weight_to_metric();
-    else if (choice == 2)
-        weight_to_us();
+        if (choice == 1)
+            weight_to_metric();
+        else if (choice == 2)
+            weight_to_us();
+    } while (choice != 0);
 }
 
 void get_input(int *p_ans)
@@ -130,7 +193,7 @@ void length_input_us(int *feet, double *inches)
 void length_convert_to_metric(int feet, double inches, int *meters, double *centimeters)
 {
     double total_inches = feet * 12 + inches;
-    double total_meters = total_inches * 0.3048/12;
+    double total_meters = total_inches * METERS_IN_FOOT / 12;
     *meters = (int)total_meters;
     *centimeters = (total_meters - *meters) * 100;
 }
@@ -161,9 +224,9 @@ void length_input_metric(double *meters, double *centimeters)
 
 void length_convert_to_us(double meters, double centimeters, int *feet, double *inches)
 {
-    double total_feet = (meters + centimeters/100)/0.3048;
+    double total_feet = (meters + centimeters / 100) / METERS_IN_FOOT;
     *feet = (int)(total_feet);
-    *inches = 12*(total_feet - *feet);
+    *inches = 12 * (total_feet - *feet);
 }
 
 void length_output_us(int feet, double inches)
@@ -192,8 +255,8 @@ void weight_input_us(int *pounds, double *ounces)
 
 void weight_convert_to_metric(int pounds, double ounces, int *kilograms, double *grams)
 {
-    double total_pounds = pounds + ounces/16;
-    double total_kilograms = total_pounds / 2.2046;
+    double total_pounds = pounds + ounces / 16;
+    double total_kilograms = total_pounds / POUNDS_IN_KILOGRAMS;
     *kilograms = (int)total_kilograms;
     *grams = (total_kilograms - *kilograms) * 1000;
 }
@@ -224,9 +287,9 @@ void weight_input_metric(double *kilograms, double *grams)
 
 void weight_convert_to_us(double kilograms, double grams, int *pounds, double *ounces)
 {
-    double total_pounds = (kilograms + grams/1000)*2.2046;
+    double total_pounds = (kilograms + grams / 1000) * POUNDS_IN_KILOGRAMS;
     *pounds = (int)(total_pounds);
-    *ounces = 16*(total_pounds - *pounds);
+    *ounces = 16 * (total_pounds - *pounds);
 }
 
 void weight_output_us(int pounds, double ounces)
