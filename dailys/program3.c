@@ -1,3 +1,10 @@
+/***********************************************
+Author: Phi Nguyen
+Course: COMP1010
+Date: 11/27/2024
+Description: Reformat student information + student test average in a new file
+***********************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 
