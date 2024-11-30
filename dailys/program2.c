@@ -1,3 +1,11 @@
+/***********************************************
+Author: Phi Nguyen
+Date: 11/15/2024
+Purpose: Practice using pointers and top down approach
+Resources: NA
+Time Spent: 15 minutess
+***********************************************/
+
 #include <stdio.h>
 
 void get_size(int* psize);

@@ -1,3 +1,11 @@
+/***********************************************
+Author: Phi Nguyen
+Date: 11/15/2024
+Purpose: Practice reading and appending to files
+Resources: NA
+Time Spent: 8 minutess
+***********************************************/
+
 #include <stdio.h>
 #include <stdlib.h>
 
