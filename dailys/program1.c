@@ -9,6 +9,7 @@ Purpose: This program prints out all number of steps to reach 1 given a range of
 // Function prototypes  
 void calc_num_steps(int num);  
 int get_integer_input(const char* prompt, int min, int max);  
+void clear_buffer(void);
 
 int main(int argc, char* argv[])  
 {  
@@ -54,6 +55,7 @@ int get_integer_input(const char* prompt, int min, int max) {
     while (1) {  
         printf("%s", prompt);  
         noc = scanf("%d", &num);
+        clear_buffer();
         if (noc) {  
             // Check if input is numeric and within the specified range  
             if (num >= min && num <= max) {  
@@ -66,3 +68,10 @@ int get_integer_input(const char* prompt, int min, int max) {
         }  
     }  
 }  
+
+void clear_buffer(void){
+    char c = '0';
+    while(c != '\n'){
+        scanf("%c", &c);
+    }
+}
