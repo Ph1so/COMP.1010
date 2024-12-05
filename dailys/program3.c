@@ -1,12 +1,10 @@
-/***********************************************
-Author: Phi Nguyen
-Course: COMP1010
-Date: 11/27/2024
-Description: Reformat student information + student test average in a new file
-***********************************************/
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <ctype.h>
+
+const int MAX = 100;
+int read_names(FILE* fp, char* name1, char* name2);
+int read_scores(FILE* fp, double* score);
 
 int main(void)
 {
@@ -27,29 +25,27 @@ int main(void)
         exit(1);
     }
 
-    char first[100];
-    char last[100];
+    char first[MAX];
+    char last[MAX];
     char name[120];
     double scores[10];
-    int sum;
+    double sum;
     double average;
 
     // Process student data
-    while (fscanf(fp1, "%s %s", first, last) == 2) {
+    while (read_names(fp1, first, last)) {
         sum = 0;
 
-        // Read the 10 quiz scores
-        for (int i = 0; i < 10; i++) {
-            if (fscanf(fp1, "%lf", &scores[i]) != 1) {
-                printf("Error reading quiz score for %s %s\n", first, last);
-                fclose(fp1);
-                fclose(fp2);
-                exit(1);
-            }
-            sum += scores[i];
+        if(read_scores(fp1, scores) == -1) {
+            fclose(fp1);
+            fclose(fp2);
+            exit(1);
         }
 
         // Calculate the average
+        for (int i = 0; i < 10; i++) {
+            sum += scores[i];
+        }
         average = sum / 10.0;
 
         // Format the name
@@ -80,4 +76,62 @@ int main(void)
     fclose(fp1);
     fclose(fp2);
     return 0;
+}
+
+int read_names(FILE* fp, char* name1, char* name2){
+    char t;
+    int i = 0;
+    while(isalpha(t = fgetc(fp))){
+        name1[i] = t;
+        i++;
+        if(i > MAX){
+            printf("Exceeded allocated memory. Name too long");
+            return 0;
+        }
+    }
+    if(i == 0)
+        return 0;
+    name1[i++] = '\0';
+    i = 0;
+    while(isalpha(t = fgetc(fp))){
+        name2[i] = t;
+        i++;
+    }
+    name2[i++] = '\0';
+    return 1;
+}
+
+int read_scores(FILE* fp, double* scores){
+    char c;
+    char buffer[10];  
+    int index = 0;
+    int score_count = 0;
+
+    while (score_count < 10) {
+        index = 0;
+
+        while ((c = fgetc(fp)) != EOF && !isdigit(c));
+        
+        if (c == EOF) return -1;  
+        
+
+        do {
+            buffer[index++] = c;
+            c = fgetc(fp);
+        } while (isdigit(c) || c == '.');
+        
+        buffer[index] = '\0'; 
+        
+     
+        scores[score_count] = atof(buffer);
+        
+        if (scores[score_count] < 0) {
+            printf("Invalid score encountered.\n");
+            return -1; 
+        }
+
+        score_count++;
+    }
+
+    return 0; 
 }
