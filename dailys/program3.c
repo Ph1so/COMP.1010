@@ -2,12 +2,12 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-const int MAX = 100;
-int read_names(FILE* fp, char* name1, char* name2);
-int read_scores(FILE* fp, double* score);
+#define MAX 60
 
-int main(void)
-{
+int read_names(FILE* fp, char* name1, char* name2);
+int read_scores(FILE* fp, FILE* fpo, int* scores);
+
+int main(void) {
     FILE *fp1, *fp2;
 
     // Open input file
@@ -25,52 +25,28 @@ int main(void)
         exit(1);
     }
 
-    char first[MAX];
-    char last[MAX];
-    char name[120];
-    double scores[10];
-    double sum;
-    double average;
+    char first[MAX], last[MAX], name[120];
+    int scores[10];
 
     // Process student data
     while (read_names(fp1, first, last)) {
-        sum = 0;
-
-        if(read_scores(fp1, scores) == -1) {
-            fclose(fp1);
-            fclose(fp2);
-            exit(1);
-        }
-
-        // Calculate the average
-        for (int i = 0; i < 10; i++) {
-            sum += scores[i];
-        }
-        average = sum / 10.0;
-
         // Format the name
-        int i = 0;
+        int i = 0, j = 0;
         while (last[i] != '\0') {
             name[i] = last[i];
             i++;
         }
-
-        name[i++] = ',';  
-        name[i++] = ' ';  
-
-        int j = 0;
+        name[i++] = ',';
+        name[i++] = ' ';
         while (first[j] != '\0') {
-            name[i + j] = first[j];
-            j++;
+            name[i++] = first[j++];
         }
-        name[i + j] = '\0';
+        name[i] = '\0';
 
         // Output the formatted data
         fprintf(fp2, "%-20s", name); // Left-justified 20 characters for the name
-        for (int i = 0; i < 10; i++) {
-            fprintf(fp2, "%4.0f", scores[i]); // Right-justified 4 characters for each score
-        }
-        fprintf(fp2, "%10.2f\n", average); // Right-justified 10 characters for the average
+        //fprintf(fp2, "\n");
+        read_scores(fp1, fp2, scores);
     }
 
     fclose(fp1);
@@ -78,60 +54,79 @@ int main(void)
     return 0;
 }
 
-int read_names(FILE* fp, char* name1, char* name2){
+int read_names(FILE* fp, char* name1, char* name2) {
     char t;
     int i = 0;
-    while(isalpha(t = fgetc(fp))){
-        name1[i] = t;
-        i++;
-        if(i > MAX){
-            printf("Exceeded allocated memory. Name too long");
+
+    // Read the first name
+    while(isspace(t = fgetc(fp)));
+    ungetc(t, fp);
+    while (1) {
+        t = fgetc(fp);
+        if(t == EOF || t == '\n') return 0;
+        if(t == ' ') break;
+        name1[i++] = t;
+        if (i >= MAX) {
+            printf("Exceeded allocated memory. Name too long.\n");
             return 0;
         }
     }
-    if(i == 0)
-        return 0;
-    name1[i++] = '\0';
+    name1[i] = '\0';
+
+    // Read the last name
     i = 0;
-    while(isalpha(t = fgetc(fp))){
-        name2[i] = t;
-        i++;
+    while (1) {
+        t = fgetc(fp);
+        if(t == EOF) break;
+        if(t == ' ' || t == '\n') break;
+        name2[i++] = t;
+        if (i >= MAX) {
+            printf("Exceeded allocated memory. Name too long.\n");
+            return 0;
+        }
     }
-    name2[i++] = '\0';
+    if(t == '\n') ungetc(t, fp);
+    name2[i] = '\0';
     return 1;
 }
 
-int read_scores(FILE* fp, double* scores){
-    char c;
-    char buffer[10];  
-    int index = 0;
-    int score_count = 0;
-
+int read_scores(FILE *fp, FILE *fpo, int *scores) {
+    char c, buffer[4];
+    int index = 0, score_count = 0, sum = 0;
     while (score_count < 10) {
-        index = 0;
-
-        while ((c = fgetc(fp)) != EOF && !isdigit(c));
-        
-        if (c == EOF) return -1;  
-        
-
-        do {
-            buffer[index++] = c;
-            c = fgetc(fp);
-        } while (isdigit(c) || c == '.');
-        
-        buffer[index] = '\0'; 
-        
-     
-        scores[score_count] = atof(buffer);
-        
-        if (scores[score_count] < 0) {
-            printf("Invalid score encountered.\n");
-            return -1; 
-        }
-
-        score_count++;
+        c = fgetc(fp);
+        if (c == ' ' || c == '\n' || c == EOF) {
+            if (index > 0) {
+                buffer[index] = '\0';  // Null-terminate the current number
+                scores[score_count] = atoi(buffer);  // Convert to integer and store
+                sum += scores[score_count];  // Add to sum
+                score_count++;  // Move to the next score
+                index = 0;  // Reset buffer for the next number
+            }
+            if(c == '\n' || c == EOF) break;
+        } 
+        else if (isdigit(c)) {
+            buffer[index++] = c;  // Add digit to buffer
+            while((c = fgetc(fp)) != EOF && !isspace(c)){
+                buffer[index++] = c;
+            }
+            ungetc(c, fp);
+        } 
     }
 
-    return 0; 
+    // Fill in remaining scores with 0 if fewer than 10 numbers are found
+    for (int i = score_count; i < 10; i++) {
+        scores[i] = 0;
+    }
+
+    // Output the scores
+    for (int i = 0; i < 10; i++) {
+        fprintf(fpo, "%4d", scores[i]);  // Right-justified 4 characters for each score
+    }
+
+    // Calculate and print the average
+    double avg = (double)sum / 10;
+    fprintf(fpo, "%10.2f\n", avg);  // Right-justified 10 characters for the average
+
+    return 0;
 }

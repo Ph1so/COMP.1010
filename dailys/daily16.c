@@ -1,4 +1,13 @@
 #include <stdio.h>
+#include <ctype.h>
+
+// Constants
+#define FEET_TO_INCHES 12
+#define INCHES_IN_FOOT 12
+#define POUNDS_IN_KILOGRAMS 2.2046
+#define METERS_IN_FOOT 0.3048
+#define OUNCES_IN_POUND 16
+#define GRAMS_IN_KILOGRAM 1000
 
 // Function declarations
 void convert_lengths(void);
@@ -88,10 +97,7 @@ void weight_output_us(int pounds, double ounces);
 // Pre: Pounds and ounces values are provided.
 // Post: Prints the converted weight in pounds and ounces to the console.
 
-// Constants
-const double POUNDS_IN_KILOGRAMS = 2.2046;
-const double METERS_IN_FOOT = 0.3048;
-
+// Function definitions
 int main(int argc, char *argv[])
 {
     int ans;
@@ -164,11 +170,10 @@ void get_input(int *p_ans)
 void clear_buffer(void)
 {
     char ans = 's';
-    while (ans != '\n')
+    while (ans != '\n' && ans != EOF)
     {
         scanf("%c", &ans);
     }
-    return;
 }
 
 // Length Conversion Functions
@@ -184,16 +189,41 @@ void length_to_metric(void)
 
 void length_input_us(int *feet, double *inches)
 {
-    printf("Enter feet: ");
-    scanf("%d", feet);
-    printf("Enter inches: ");
-    scanf("%lf", inches);
+    int valid_input = 0;
+    while (!valid_input)
+    {
+        printf("Enter feet: ");
+        if (scanf("%d", feet) != 1)
+        {
+            clear_buffer();
+            printf("Invalid input. Please enter a valid number for feet.\n");
+        }
+        else
+        {
+            valid_input = 1;
+        }
+    }
+
+    valid_input = 0;
+    while (!valid_input)
+    {
+        printf("Enter inches: ");
+        if (scanf("%lf", inches) != 1)
+        {
+            clear_buffer();
+            printf("Invalid input. Please enter a valid number for inches.\n");
+        }
+        else
+        {
+            valid_input = 1;
+        }
+    }
 }
 
 void length_convert_to_metric(int feet, double inches, int *meters, double *centimeters)
 {
-    double total_inches = feet * 12 + inches;
-    double total_meters = total_inches * METERS_IN_FOOT / 12;
+    double total_inches = feet * FEET_TO_INCHES + inches;
+    double total_meters = total_inches * METERS_IN_FOOT / INCHES_IN_FOOT;
     *meters = (int)total_meters;
     *centimeters = (total_meters - *meters) * 100;
 }
@@ -216,17 +246,42 @@ void length_to_us(void)
 
 void length_input_metric(double *meters, double *centimeters)
 {
-    printf("Enter meters: ");
-    scanf("%lf", meters);
-    printf("Enter centimeters: ");
-    scanf("%lf", centimeters);
+    int valid_input = 0;
+    while (!valid_input)
+    {
+        printf("Enter meters: ");
+        if (scanf("%lf", meters) != 1)
+        {
+            clear_buffer();
+            printf("Invalid input. Please enter a valid number for meters.\n");
+        }
+        else
+        {
+            valid_input = 1;
+        }
+    }
+
+    valid_input = 0;
+    while (!valid_input)
+    {
+        printf("Enter centimeters: ");
+        if (scanf("%lf", centimeters) != 1)
+        {
+            clear_buffer();
+            printf("Invalid input. Please enter a valid number for centimeters.\n");
+        }
+        else
+        {
+            valid_input = 1;
+        }
+    }
 }
 
 void length_convert_to_us(double meters, double centimeters, int *feet, double *inches)
 {
     double total_feet = (meters + centimeters / 100) / METERS_IN_FOOT;
     *feet = (int)(total_feet);
-    *inches = 12 * (total_feet - *feet);
+    *inches = INCHES_IN_FOOT * (total_feet - *feet);
 }
 
 void length_output_us(int feet, double inches)
@@ -247,18 +302,43 @@ void weight_to_metric(void)
 
 void weight_input_us(int *pounds, double *ounces)
 {
-    printf("Enter pounds: ");
-    scanf("%d", pounds);
-    printf("Enter ounces: ");
-    scanf("%lf", ounces);
+    int valid_input = 0;
+    while (!valid_input)
+    {
+        printf("Enter pounds: ");
+        if (scanf("%d", pounds) != 1)
+        {
+            clear_buffer();
+            printf("Invalid input. Please enter a valid number for pounds.\n");
+        }
+        else
+        {
+            valid_input = 1;
+        }
+    }
+
+    valid_input = 0;
+    while (!valid_input)
+    {
+        printf("Enter ounces: ");
+        if (scanf("%lf", ounces) != 1)
+        {
+            clear_buffer();
+            printf("Invalid input. Please enter a valid number for ounces.\n");
+        }
+        else
+        {
+            valid_input = 1;
+        }
+    }
 }
 
 void weight_convert_to_metric(int pounds, double ounces, int *kilograms, double *grams)
 {
-    double total_pounds = pounds + ounces / 16;
+    double total_pounds = pounds + ounces / OUNCES_IN_POUND;
     double total_kilograms = total_pounds / POUNDS_IN_KILOGRAMS;
     *kilograms = (int)total_kilograms;
-    *grams = (total_kilograms - *kilograms) * 1000;
+    *grams = (total_kilograms - *kilograms) * GRAMS_IN_KILOGRAM;
 }
 
 void weight_output_metric(int kilograms, double grams)
@@ -279,17 +359,42 @@ void weight_to_us(void)
 
 void weight_input_metric(double *kilograms, double *grams)
 {
-    printf("Enter kilograms: ");
-    scanf("%lf", kilograms);
-    printf("Enter grams: ");
-    scanf("%lf", grams);
+    int valid_input = 0;
+    while (!valid_input)
+    {
+        printf("Enter kilograms: ");
+        if (scanf("%lf", kilograms) != 1)
+        {
+            clear_buffer();
+            printf("Invalid input. Please enter a valid number for kilograms.\n");
+        }
+        else
+        {
+            valid_input = 1;
+        }
+    }
+
+    valid_input = 0;
+    while (!valid_input)
+    {
+        printf("Enter grams: ");
+        if (scanf("%lf", grams) != 1)
+        {
+            clear_buffer();
+            printf("Invalid input. Please enter a valid number for grams.\n");
+        }
+        else
+        {
+            valid_input = 1;
+        }
+    }
 }
 
 void weight_convert_to_us(double kilograms, double grams, int *pounds, double *ounces)
 {
-    double total_pounds = (kilograms + grams / 1000) * POUNDS_IN_KILOGRAMS;
-    *pounds = (int)(total_pounds);
-    *ounces = 16 * (total_pounds - *pounds);
+    double total_pounds = kilograms * POUNDS_IN_KILOGRAMS + grams / GRAMS_IN_KILOGRAM * POUNDS_IN_KILOGRAMS;
+    *pounds = (int)total_pounds;
+    *ounces = OUNCES_IN_POUND * (total_pounds - *pounds);
 }
 
 void weight_output_us(int pounds, double ounces)

@@ -1,5 +1,4 @@
 phi nguyen 90 80 12 90 90 90 100 23 23 100
 hop pop 
-what the
 joe johnson 20 80 12 90 90 90 20 23 23
 bobson bob 20 80
