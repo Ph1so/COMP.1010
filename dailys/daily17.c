@@ -27,7 +27,7 @@ int main(void) {
         exit(1);
     }
 
-    fp_out = fopen("final.txt", "a");
+    fp_out = fopen("final.txt", "w");
     if (fp_out == NULL) {
         printf("Error opening final.txt\n");
         fclose(fp1);
