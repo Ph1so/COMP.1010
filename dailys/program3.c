@@ -5,7 +5,14 @@
 #define MAX 60
 
 int read_names(FILE* fp, char* name1, char* name2);
+// Pre: none
+// Post: name1 will contain c-string of first name - name2 will contain c-string of last name - fp will be on the first quiz score, if at all
 int read_scores(FILE* fp, FILE* fpo, int* scores);
+// Pre: first and last name were already read - should only be quiz scores, if at all, in the rest of the line
+// Post: finished reading line with scores and avg printed to new file
+void copy_file(FILE* in, FILE* out);
+// Pre: in is expected to have the average score and 0s replacing missing scores
+// Post: out has the same contents as in
 
 int main(void) {
     FILE *fp1, *fp2;
@@ -49,6 +56,24 @@ int main(void) {
         read_scores(fp1, fp2, scores);
     }
 
+    fclose(fp1);
+    fclose(fp2);
+
+    // Open input file
+    fp1 = fopen("quiz.txt", "w");
+    if (fp1 == NULL) {
+        printf("Error opening quiz.txt\n");
+        exit(1);
+    }
+
+    // Open output file
+    fp2 = fopen("average.txt", "r");
+    if (fp2 == NULL) {
+        printf("Error opening average.txt\n");
+        fclose(fp1);
+        exit(1);
+    }
+    copy_file(fp2, fp1);
     fclose(fp1);
     fclose(fp2);
     return 0;
@@ -129,4 +154,12 @@ int read_scores(FILE *fp, FILE *fpo, int *scores) {
     fprintf(fpo, "%10.2f\n", avg);  // Right-justified 10 characters for the average
 
     return 0;
+}
+
+void copy_file(FILE* in, FILE* out){
+    char c;
+    while((c = fgetc(in)) != EOF){
+        fputc(c, out);
+    }
+    return;
 }

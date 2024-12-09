@@ -2,8 +2,9 @@
 triple:          'arm64-apple-darwin'
 binary-path:     '/Users/phinguyen/UML/COMP1010/dailys/output/program3'
 relocations:
-  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003788, symSize: 0x24C }
-  - { offsetInCU: 0x55, offset: 0x55, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003788, symSize: 0x24C }
-  - { offsetInCU: 0xF0, offset: 0xF0, size: 0x8, addend: 0x0, symName: _read_names, symObjAddr: 0x24C, symBinAddr: 0x1000039D4, symSize: 0x1FC }
-  - { offsetInCU: 0x150, offset: 0x150, size: 0x8, addend: 0x0, symName: _read_scores, symObjAddr: 0x448, symBinAddr: 0x100003BD0, symSize: 0x2C0 }
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003684, symSize: 0x2F0 }
+  - { offsetInCU: 0x55, offset: 0x55, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003684, symSize: 0x2F0 }
+  - { offsetInCU: 0xF0, offset: 0xF0, size: 0x8, addend: 0x0, symName: _read_names, symObjAddr: 0x2F0, symBinAddr: 0x100003974, symSize: 0x1FC }
+  - { offsetInCU: 0x150, offset: 0x150, size: 0x8, addend: 0x0, symName: _read_scores, symObjAddr: 0x4EC, symBinAddr: 0x100003B70, symSize: 0x2C0 }
+  - { offsetInCU: 0x220, offset: 0x220, size: 0x8, addend: 0x0, symName: _copy_file, symObjAddr: 0x7AC, symBinAddr: 0x100003E30, symSize: 0x54 }
 ...
