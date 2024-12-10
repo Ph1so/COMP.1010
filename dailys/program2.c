@@ -9,10 +9,20 @@ Time Spent: 15 minutess
 #include <stdio.h>
 
 void get_size(int* psize);
+//Pre: none
+//Post: The value pointed to by psize contains a non-negative integer entered by the user
 void get_days(int* pdays);
+//Pre: none 
+//Post: The value pointed to by pdays contains a non-negative integer entered by the user.
 void calculate_population(int size, int days);
+//Pre: size is a non-negative integer representing the initial population size. days is a non-negative integer representing the number of days for the calculation.
+//Post: Prints the calculated population at the end of the given number of days based on the Fibonacci-like growth pattern.
 void get_choice(int* choice);
+//Pre: none
+//Post: The value pointed to by choice is set to 1 (to continue) or 0 (to exit) based on user input.
 void clear_buffer(void);
+//Pre: none
+//Post: Clears the input buffer to discard any remaining characters, ensuring future input operations are clean. 
 
 int main(void){
     int choice, size, days;

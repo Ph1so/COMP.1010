@@ -8,8 +8,14 @@ Purpose: This program prints out all number of steps to reach 1 given a range of
 
 // Function prototypes  
 void calc_num_steps(int num);  
+// Pre: num is a positive integer greater than or equal to 1.
+// Post: Prints the total number of steps it takes for num to reach 1 using the Collatz Conjecture rules, formatted as num: steps.
 int get_integer_input(const char* prompt, int min, int max);  
+// Pre: prompt is a valid string displayed to the user. min and max define the valid range for the input, with min < max.
+// Post: Returns an integer input from the user that is within the range [min, max]. The input is validated before returning.
 void clear_buffer(void);
+// Pre: none
+// Post: Clears the input buffer by discarding any remaining characters until a newline (\n) is encountered.
 
 int main(int argc, char* argv[])  
 {  
