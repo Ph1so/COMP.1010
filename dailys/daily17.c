@@ -35,23 +35,21 @@ int main(void) {
         exit(1);
     }
 
-    // Read numbers from both files and write their sum
-    while (1) {
-        noc1 = fscanf(fp1, "%d", &num1);
-        noc2 = fscanf(fp2, "%d", &num2);
+    noc1 = fscanf(fp1, "%d", &num1);
+    noc2 = fscanf(fp2, "%d", &num2);
 
+    while (1) {
         if (noc1 == EOF && noc2 == EOF) {
             break;
         }
 
-        if (noc1 == EOF) {
-            num1 = 0; 
+        if (noc1 == EOF || (noc2 != EOF && num2 < num1)) {
+            fprintf(fp_out, "%d\n", num2);
+            noc2 = fscanf(fp2, "%d", &num2);
+        } else {
+            fprintf(fp_out, "%d\n", num1);
+            noc1 = fscanf(fp1, "%d", &num1); 
         }
-        if (noc2 == EOF) {
-            num2 = 0; 
-        }
-
-        fprintf(fp_out, "%d\n", num1 + num2);
     }
 
     fclose(fp1);
